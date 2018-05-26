@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Page, List } from 'react-onsenui';
+import { Page, List, Card } from 'react-onsenui';
 
 import Header from '../../components/Header/Header';
 import Item from '../../components/Item/Item';
@@ -40,6 +40,7 @@ class Details extends Component {
         onShow={this.onEnter.bind(this)}
         onHide={this.onLeave.bind(this)}
       >
+        <Card style={{ marginTop: '15px' }}>Type : {this.props.item.fields.designation}</Card>
         
         {this.state.galleryVisible
           ? <Gallery images={this.props.item.fields.maps} />
