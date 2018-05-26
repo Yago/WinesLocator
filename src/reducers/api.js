@@ -1,14 +1,20 @@
 import {
-  GET_DATA,
+  SET_DATA,
 } from '../actions/api';
 
-const defaultState = {};
+const defaultState = {
+  data: [],
+};
 
 export default function apiReducer(state = defaultState, action) {
   switch (action.type) {
 
-    case GET_DATA:
-      return state;
+    case SET_DATA:
+      console.log(action.payload);
+      return {
+        ...state,
+        data: action.payload,
+      };
 
     default: return state;
   }
