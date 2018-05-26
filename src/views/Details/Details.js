@@ -3,11 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Page, List } from 'react-onsenui';
 
+import Header from '../../components/Header/Header';
 import Item from '../../components/Item/Item';
 import Grapes from '../../components/Grapes/Grapes';
-import Header from '../../components/Header/Header';
+import Gallery from '../../components/Gallery/Gallery';
 
 class Details extends Component {
+  state = {
+    galleryVisible: false
+  }
+
   pushPage(item, navigator) {
     navigator.pushPage({
       component: connect(mapState, mapDispatch)(Details),
@@ -19,13 +24,33 @@ class Details extends Component {
     });
   }
 
+  onEnter() {
+    this.setState({ galleryVisible: true });
+  }
+
+  onLeave() {
+    this.setState({ galleryVisible: false });
+  }
+
   render() {
     return (
-      <Page renderToolbar={() => (<Header title={this.props.item.fields.name} back={true} />)}>
+      <Page
+        renderToolbar={() => (<Header title={this.props.item.fields.name}
+        back={true} />)}
+        onShow={this.onEnter.bind(this)}
+        onHide={this.onLeave.bind(this)}
+      >
+        
+        {this.state.galleryVisible
+          ? <Gallery images={this.props.item.fields.maps} />
+          : ''
+        }
+
         {this.props.api
           ? <Grapes vineyard={this.props.item.id} />
           : ''
         }
+
         <List>
           {this.props.api ? this.props.api.data
             .filter((item) => {
