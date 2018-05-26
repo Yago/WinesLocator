@@ -8,13 +8,14 @@ import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 import './App.css';
 
-import { getData } from '../../actions/api';
+import { getData, getGrapes } from '../../actions/api';
 
 import Home from '../../views/Home/Home';
 
 class App extends Component {
   componentDidMount() {
     this.props.getData();
+    this.props.getGrapes();
   }
 
   renderPage(route, navigator) {
@@ -45,6 +46,7 @@ function mapState(state) {
 function mapDispatch(dispatch) {
   return bindActionCreators({
     getData,
+    getGrapes,
   }, dispatch);
 }
 

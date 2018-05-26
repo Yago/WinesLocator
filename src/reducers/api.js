@@ -1,9 +1,11 @@
 import {
   SET_DATA,
+  SET_GRAPES,
 } from '../actions/api';
 
 const defaultState = {
   data: [],
+  grapes: [],
 };
 
 export default function apiReducer(state = defaultState, action) {
@@ -13,6 +15,12 @@ export default function apiReducer(state = defaultState, action) {
       return {
         ...state,
         data: action.payload,
+      };
+
+    case SET_GRAPES:
+      return {
+        ...state,
+        grapes: action.payload,
       };
 
     default: return state;

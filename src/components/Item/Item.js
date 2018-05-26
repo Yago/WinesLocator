@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ListItem } from 'react-onsenui';
 
 class Item extends Component {
-  state = {}
   render() { 
     return (
       <ListItem

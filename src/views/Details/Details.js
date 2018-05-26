@@ -3,18 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Page, List } from 'react-onsenui';
 
-import { getData } from '../../actions/api';
-
 import Item from '../../components/Item/Item';
+import Grapes from '../../components/Grapes/Grapes';
 import Header from '../../components/Header/Header';
 
 class Details extends Component {
   pushPage(item, navigator) {
     navigator.pushPage({
-      component: Details,
+      component: connect(mapState, mapDispatch)(Details),
       props: {
+        ...this.props,
         key: item.id,
-        item
+        item,
       }
     });
   }
@@ -22,7 +22,24 @@ class Details extends Component {
   render() {
     return (
       <Page renderToolbar={() => (<Header title={this.props.item.fields.name} back={true} />)}>
-        <p><br /><br /><br /><br /><br /><br />Details here</p>
+        {this.props.api
+          ? <Grapes vineyard={this.props.item.id} />
+          : ''
+        }
+        <List>
+          {this.props.api ? this.props.api.data
+            .filter((item) => {
+              return item.fields.parent && item.fields.parent[0] === this.props.item.id;
+            })
+            .map((item, i) =>
+              <Item
+                key={i}
+                data={item}
+                navigator={this.props.navigator}
+                handleClick={this.pushPage}
+              />
+          ): ''}
+        </List>
       </Page>
     );
   }
@@ -36,7 +53,7 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
   return bindActionCreators({
-    getData,
+    
   }, dispatch);
 }
 
