@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { Navigator } from 'react-onsenui';
+
+import 'onsenui/css/onsenui.css';
+import 'onsenui/css/onsen-css-components.css';
 import './App.css';
 
 import { getData } from '../../actions/api';
+
+import Home from '../../views/Home/Home';
 
 class App extends Component {
   componentDidMount() {
     this.props.getData();
   }
 
-  Item = ({ data }) => {
-    return (
-      <div>
-        {data.name}
-      </div>
-    )
-  }
+  renderPage(route, navigator) {
+    const props = route.props || {};
+    props.navigator = navigator;
 
+    return React.createElement(route.component, props);
+  }
 
   render() {
     return (
-      <div className="App">
-        <h1>Yo</h1>
-        {this.props.api.data.map((item, i) =>
-          <this.Item key={i} data={item.fields}/>
-        )}
-      </div>
+      <Navigator
+        key='nav'
+        swipeable
+        initialRoute={{ component: Home, props: { key: 'homepage' } }}
+        renderPage={this.renderPage}
+      />
     );
   }
 }

@@ -20,7 +20,6 @@ export function getData() {
       }
     })
     .then((res) => {
-      console.log(res.data.records);
       dispatch(setData(res.data.records));
     })
     .catch((err) => {
