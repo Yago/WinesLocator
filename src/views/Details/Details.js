@@ -9,17 +9,19 @@ import Item from '../../components/Item/Item';
 import Header from '../../components/Header/Header';
 
 class Details extends Component {
-  pushPage() {
-    this.props.navigator.pushPage({
+  pushPage(item, navigator) {
+    navigator.pushPage({
       component: Details,
-      props: { key: 'details' }
+      props: {
+        key: item.id,
+        item
+      }
     });
   }
 
   render() {
     return (
-      <Page>
-        <Header title="Details" back={true} />
+      <Page renderToolbar={() => (<Header title={this.props.item.fields.name} back={true} />)}>
         <p><br /><br /><br /><br /><br /><br />Details here</p>
       </Page>
     );

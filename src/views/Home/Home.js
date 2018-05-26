@@ -11,24 +11,26 @@ import Header from '../../components/Header/Header';
 import Details from '../Details/Details';
 
 class Home extends Component {
-  pushPage() {
-    this.props.navigator.pushPage({
+  pushPage(item, navigator) {
+    navigator.pushPage({
       component: Details,
-      props: { key: 'details' }
+      props: {
+        key: item.id,
+        item
+      }
     });
   }
 
   render() {
     return (
-      <Page>
-        <Header title="Homepage" back={false} />
+      <Page renderToolbar={() => (<Header title="Homepage" back={false} />)}>
         <List>
           {this.props.api.data.map((item, i) =>
             <Item
               key={i}
               data={item}
               navigator={this.props.navigator}
-              handleClick={this.pushPage.bind(this)}
+              handleClick={this.pushPage}
             />
           )}
         </List>

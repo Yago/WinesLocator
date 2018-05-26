@@ -8,7 +8,11 @@ class Item extends Component {
       <ListItem
         modifier="chevron"
         tappable
-        onClick={this.props.handleClick.bind(this)}
+        onClick={this.props.handleClick.bind(
+          this,
+          this.props.data,
+          this.props.navigator,
+        )}
       >
         <div className='center'>
           {this.props.data.fields.name}

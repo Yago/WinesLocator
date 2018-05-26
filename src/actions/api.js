@@ -3,6 +3,29 @@ import config from '../config/config.json';
 
 export const SET_DATA = 'SET_DATA';
 
+const dataFetch = (offset = null, data = [], resolver = null) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: `https://api.airtable.com/v0/${config.airtable.table}?sort[0][field]=name&sort[0][direction]=asc${ offset ? `&offset=${offset}` : '' }`,
+      headers: {
+        'Authorization': `Bearer ${config.airtable.key}`
+      }
+    })
+    .then((res) => {
+      const newData = [...data, ...res.data.records]
+      if (res.data.offset) {
+        dataFetch(res.data.offset, newData, resolver || resolve)
+      } else {
+        resolver(newData);
+      }
+    })
+    .catch((err) => {
+      reject(err);
+    });
+  });
+}
+
 export function setData(data) {
   return {
     type: SET_DATA,
@@ -12,18 +35,6 @@ export function setData(data) {
 
 export function getData() {
   return dispatch => {
-    axios({
-      method: 'get',
-      url: `https://api.airtable.com/v0/${config.airtable.table}?maxRecords=300`,
-      headers: {
-        'Authorization': `Bearer ${config.airtable.key}`
-      }
-    })
-    .then((res) => {
-      dispatch(setData(res.data.records));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    return dataFetch().then(data => dispatch(setData(data)));
   };
 }
