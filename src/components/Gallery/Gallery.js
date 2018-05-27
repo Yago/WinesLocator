@@ -11,7 +11,7 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      container: this.props.images.map((image) => ({
+      container: this.props.images.reverse().map((image) => ({
         src: image.url,
         w: image.thumbnails.large.width * 8,
         h: image.thumbnails.large.height * 8,

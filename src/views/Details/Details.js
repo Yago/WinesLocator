@@ -40,7 +40,7 @@ class Details extends Component {
         onShow={this.onEnter.bind(this)}
         onHide={this.onLeave.bind(this)}
       >
-        <Card style={{ marginTop: '15px' }}>Type : {this.props.item.fields.designation}</Card>
+        <Card style={{ marginTop: '15px' }}>Type : <b>{this.props.item.fields.designation}</b></Card>
         
         {this.state.galleryVisible
           ? <Gallery images={this.props.item.fields.maps} />

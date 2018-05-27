@@ -13,6 +13,10 @@ class Item extends Component {
           this.props.navigator,
         )}
       >
+        {this.props.data.fields.flag
+          ? <div className="left">{this.props.data.fields.flag}</div>
+          : ''
+        }
         <div className='center'>
           {this.props.data.fields.name}
         </div>
