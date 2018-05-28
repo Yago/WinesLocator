@@ -3,11 +3,11 @@
 
 :root {
   /* variables for iOS components */
-  --background-color: #741736;
+  --background-color: #8A0034;
   --text-color: rgba(31,31,35,1);
   --sub-text-color: #999;
-  --highlight-color: #741736;
-  --second-highlight-color: #B53450;
+  --highlight-color: #8A0034;
+  --second-highlight-color: #D4124D;
   --border-color: #ccc;
   --button-background-color: var(--highlight-color);
   --button-cta-background-color: var(--second-highlight-color);
@@ -25,7 +25,7 @@
   --list-background-color: #FEFEFF;
   --list-header-background-color: #eee;
   --list-tap-active-background-color: #d9d9d9;
-  --list-item-chevron-color: #B53450;
+  --list-item-chevron-color: #D4124D;
   --progress-bar-color: var(--highlight-color);
   --progress-bar-secondary-color: rgba(0,0,0,1);
   --progress-bar-background-color: transparent;
@@ -74,7 +74,7 @@
   --select-input-border-color: var(--border-color);
 
   /* variables for Material Design components */
-  --material-background-color: #741736;
+  --material-background-color: #8A0034;
   --material-text-color: var(--text-color);
   --material-notification-background-color: #e91e63;
   --material-notification-color: white;
@@ -89,12 +89,12 @@
   --material-range-zero-thumb-color: #f2f2f2;
   --material-toolbar-background-color: #ffffff;
   --material-toolbar-text-color: #31313a;
-  --material-toolbar-button-color: #741736;
+  --material-toolbar-button-color: #8A0034;
   --material-segment-background-color: #fafafa;
   --material-segment-active-background-color: #c8c8c8;
   --material-segment-text-color: color(black a(38%));
   --material-segment-active-text-color: #353535;
-  --material-button-background-color: #741736;
+  --material-button-background-color: #8A0034;
   --material-button-text-color: #ffffff;
   --material-button-disabled-background-color: color(#4f4f4f a(26%));
   --material-button-disabled-color: color(black a(26%));
