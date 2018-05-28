@@ -11,18 +11,20 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      container: this.props.images.reverse().map((image) => ({
-        src: image.url,
-        w: image.thumbnails.large.width * 8,
-        h: image.thumbnails.large.height * 8,
-      }))
+      container: this.props.images.reverse().map((image) => {
+        const hasThumb = image.thumbnails !== undefined && image.thumbnails.large !== undefined;
+
+        return {
+          src: image.url,
+          w: hasThumb ? image.thumbnails.large.width * 8 : 2000,
+          h: hasThumb ? image.thumbnails.large.height * 8 : 2000,
+        }
+      })
     };
   }
   
   render() {
-    return (
-      <PhotoSwipeGallery items={this.state.container} />
-    )
+    return (<PhotoSwipeGallery items={this.state.container} />);
   }
 }
  

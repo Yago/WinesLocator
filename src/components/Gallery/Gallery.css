@@ -2,7 +2,14 @@
   top: 44px;
 }
 
-.pswp-gallery {
+.pswp__top-bar { background: rgba(81,12,35,0.6) !important; }
+
+.pswp__zoom-wrap .pswp__img {
+  height: auto !important;
+}
+
+.pswp-gallery,
+.pswp-thumbnails {
   max-width: 100%;
   display: flex;
   align-items: center;
@@ -11,7 +18,8 @@
   margin: 15px 0;
 }
 
-.pswp-gallery figure {
+.pswp-gallery figure,
+.pswp-thumbnail {
   flex: 0 0 29.5%;
   width: 29.5%;
   max-height: 100px;
@@ -21,7 +29,8 @@
   overflow: hidden;
 }
 
-.pswp-gallery figure img {
+.pswp-gallery figure img,
+.pswp-thumbnail img {
   display: block;
   width: 100%;
   height: 100px;

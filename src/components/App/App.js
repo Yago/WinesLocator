@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Navigator } from 'react-onsenui';
 
 import 'onsenui/css/onsenui.css';
-import 'onsenui/css/dark-onsen-css-components.css';
+import './onsen-theme/onsen-css-components.css';
 import './App.css';
 
 import { getData, getGrapes } from '../../actions/api';
